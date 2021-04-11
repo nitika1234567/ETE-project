@@ -1,0 +1,16 @@
+input,button
+{
+ font-style:calibri;
+ padding:4px;
+ margin:20px;
+}
+body
+{
+ padding:20px;
+ margin:20px;
+}
+button
+{
+ background-color:blue;
+ font-style:calibri;
+}

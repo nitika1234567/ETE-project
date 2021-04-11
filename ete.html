@@ -1,0 +1,45 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-image:url('covid.jpg')">
+
+  <input type="text" name="country" placeholder="country" id="country" required>
+  <input type="date" name="start_date" placeholder="dd-mm-yyyy" id="start" required> 
+  <input type="date" name="end_date" placeholder="dd-mm-yyyy" id="end" required> 
+  <button onclick="apicall()">submit</button>
+
+</body>
+<script>
+function apicall() {
+    var country = document.getElementById("country").value;
+    var x = document.getElementById("start").value;
+    var y = document.getElementById("end").value;
+    var request = new XMLHttpRequest();
+    request.open('GET', `https://api.covid19api.com/country/${country}?from=${x}T00:00:00Z&to=${y}T00:00:00Z`, true)
+    request.onload = function () {
+        var data = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+
+            data.forEach((movie) => {
+                covid(movie.Active, movie.Deaths, movie.Recovered);
+            })
+        } else {
+            console.log('error')
+        }
+    }
+
+    request.send();
+
+}
+function covid(active, death, recovered) {
+    var p= document.createElement("P");
+    p.innerText = active + " " + death + " " + recovered;
+    document.body.appendChild(p);
+   
+}
+</script>
+</html>
