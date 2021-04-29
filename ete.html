@@ -6,9 +6,9 @@
 
 <body style="background-image:url('covid.jpg')">
 
-  <input type="text" name="country" placeholder="country" id="country" required>
-  <input type="date" name="start_date" placeholder="dd-mm-yyyy" id="start" required> 
-  <input type="date" name="end_date" placeholder="dd-mm-yyyy" id="end" required> 
+  <input type="text" name="country" placeholder="country" id="country" class="dd" required>
+  <input type="date" name="start_date" placeholder="dd-mm-yyyy" id="start" class="dd" required> 
+  <input type="date" name="end_date" placeholder="dd-mm-yyyy" id="end" class="dd" required> 
   <button onclick="apicall()">submit</button>
 
 </body>
@@ -36,10 +36,13 @@ function apicall() {
 
 }
 function covid(active, death, recovered) {
-    var p= document.createElement("P");
-    p.innerText = active + " " + death + " " + recovered;
-    document.body.appendChild(p);
-   
+    var pt = document.getElementsByClassName("res");
+    var para = document.createElement("div");
+    para.classList.add("res");
+    para.innerHTML = "Confirmed cases : " + confirm + " " +
+        "<br>Active Cases : " + active + " " +
+        "<br>Death Cases : " + death;
+    document.body.appendChild(para);
 }
 </script>
 </html>
